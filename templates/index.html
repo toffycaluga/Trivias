@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+{% from 'macros.html' import navbar %}
+
+{% block main %}
+  {{ navbar('/') }}
+
+  <h2 class="text-center">Bienvenid@ {{ user.name }}</h2>
+
+  <div class="row">
+    <form action="/images" method="post" class="col-4 offset-4" enctype="multipart/form-data">
+      <h5>Ejemplo de Formulario que sube archivos</h5>
+      <div class="mb-3">
+        <label>Nombre de la Imagen</label>
+        <input type="text" required class="form-control" name="name">
+      </div>
+      <div class="mb-3">
+        <label>Imagen</label>
+        <input type="file" class="form-control" required name="image">
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+
+{% endblock %}
+
