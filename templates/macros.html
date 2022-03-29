@@ -12,12 +12,17 @@
           <a class="nav-link {% if active == '/' %}active{% endif %}" aria-current="page" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {% if active == '/seguidos' %}active{% endif %} {% if es_admin==false %} disabled"
-            data-bs-toggle="tooltip" data-bs-placement="right"
-            title="Solo los Administradores pueden ingresar nuevas preguntas" {% endif %}" href="/new_question" {%if
-            es_admin==false %}data-bs-toggle="tooltip" data-bs-placement="right"
-            title="Solo los Administradores pueden ingresar nuevas preguntas" {%endif%}>Add Question</a>
+          {% if es_admin==false %}
+          <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip"
+            title="solo los administradores pueden agregar nuevas preguntas">
+            <a class="nav-link {% if active == '/seguidos' %}active{% endif %}  disabled" href="/new_question">Add
+              Question</a>
+          </span>
+          {% elif es_admin==true %}
+          <a class="nav-link {% if active == '/seguidos' %}active{% endif %}  " href="/new_question">Add Question</a>
+          {% endif %}
         </li>
+
       </ul>
       <div class="d-flex">
         <a href="/logout" class="btn btn-outline-success" type="submit">Logout</a>
