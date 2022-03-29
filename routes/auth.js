@@ -1,6 +1,6 @@
-const express = require('express')
-const bcrypt = require('bcrypt')
-const { get_user, create_user } = require('../db.js')
+import express from 'express';
+import bcrypt from 'bcrypt'
+import { get_user, create_user } from '../db.js'
 
 const router = express.Router()
 
@@ -51,7 +51,7 @@ router.post('/register', async (req, res) => {
     req.flash('errors', 'Las contraseñas no coinciden')
     return res.redirect('/register')
   }
-  
+
   // 3. Validar que no exista otro usuario con el mismo correo
   const user = await get_user(email)
   if (user) {
@@ -77,4 +77,4 @@ router.get('/logout', (req, res) => {
   res.redirect('/login')
 })
 
-module.exports = router
+export default router
